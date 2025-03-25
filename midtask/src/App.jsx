@@ -5,15 +5,20 @@ function App() {
   const [toggleTheme, setToggleTheme] = useState(false)
   const [counter, setCounter] = useState(30)
 
+  let x
+
   function toggleHandeler(event) {
     setToggleTheme(!toggleTheme)
     // document.getElementsByTagName("body").classList = ".light"
   }
 
   function counterHandeler() {
-    setInterval(() => {
-      if(counter > 25) {
-        setCounter(prev => prev - 1)
+    x = setInterval(() => {
+      setCounter(prev => prev - 1)
+      console.log(counter)
+      if(counter < 25) {
+        // window.clearInterval(x)
+        console.log("YESS")
       }
     }, 1000)
 
