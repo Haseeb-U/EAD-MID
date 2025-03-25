@@ -1,13 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
   const [toggleTheme, setToggleTheme] = useState(false)
+  const [counter, setCounter] = useState(30)
 
   function toggleHandeler(event) {
     setToggleTheme(!toggleTheme)
     // document.getElementsByTagName("body").classList = ".light"
   }
+
+  function counterHandeler() {
+    setInterval(() => {
+      if(counter > 25) {
+        setCounter(prev => prev - 1)
+      }
+    }, 1000)
+
+    
+
+  }
+
+ 
 
   return (
     <>
@@ -30,9 +44,9 @@ function App() {
           <div className="progress-bar">
             <div className="progress" id="progress"></div>
           </div>
-          <div className="timer" id="timerDisplay">30s</div>
+          <div className="timer" id="timerDisplay">{counter}s</div>
           <div className="btn-group">
-            <button id="startButton">Start Timer</button>
+            <button id="startButton" onClick={counterHandeler}>Start Timer</button>
             <button id="resetButton" style={{display: "none"}}>Reset Timer</button>
           </div>
           <div className="message" id="messageArea"></div>
