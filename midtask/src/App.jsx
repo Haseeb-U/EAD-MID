@@ -1,33 +1,44 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [toggleTheme, setToggleTheme] = useState(false)
+
+  function toggleHandeler(event) {
+    setToggleTheme(!toggleTheme)
+    // document.getElementsByTagName("body").classList = ".light"
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className={"theme " + (toggleTheme ? "light": "")}>
+      <div className="container">
+        
+        <div className="header">
+          <h1>Countdown & Light Switch</h1>
+          <div className="toggle-container">
+            <label className="toggle-switch">
+              <input type="checkbox" id="themeToggle" onChange={toggleHandeler} checked={toggleTheme}/>
+              <span className="slider"></span>
+            </label>
+            <span>Light Mode</span>
+          </div>
+        </div>
+    
+    
+        <div className="timer-section">
+          <div className="progress-bar">
+            <div className="progress" id="progress"></div>
+          </div>
+          <div className="timer" id="timerDisplay">30s</div>
+          <div className="btn-group">
+            <button id="startButton">Start Timer</button>
+            <button id="resetButton" style={{display: "none"}}>Reset Timer</button>
+          </div>
+          <div className="message" id="messageArea"></div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
